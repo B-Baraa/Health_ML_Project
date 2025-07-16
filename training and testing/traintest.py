@@ -1,8 +1,10 @@
+# ✅ Phase 3: Workplace Stress Analysis training and model testing Suite
 # ----------------------------------
 #  1. Import Libraries
 # ----------------------------------
 import pandas as pd
 import numpy as np
+import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import randint
@@ -23,7 +25,7 @@ df['stress_level_encoded'] = le.fit_transform(df['stress_level'])  # high/modera
 selected_features = [
     'Age', 'self_employed', 'family_history', 'treatment',
     'remote_work', 'tech_company', 'mental_vs_physical', 'work_interfere',
-    'benefits', 'anonymity', 'no_employees'
+    'benefits', 'anonymity', 'no_employees', 'supervisor', 'gad7_score'
 ]
 
 X = df[selected_features]
@@ -166,6 +168,11 @@ for name, model in models.items():
 # ----------------------------------
 best_model_name = max(f1_scores, key=f1_scores.get)
 print(f"\n Best Performing Model: {best_model_name} with F1 Score = {f1_scores[best_model_name]:.4f}")
+#------------------------------------------------
+# 8. Save model and label encoder
+#------------------------------------------------
+# Save the model
+joblib.dump(best_model, 'stress_prediction_model.pkl')
 
-
-
+# Save LabelEncoder if needed
+joblib.dump(le, 'label_encoder.pkl')
