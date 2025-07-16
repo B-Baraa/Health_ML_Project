@@ -5,15 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e68e529-6d3c-4201-bf0a-66c070176d13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/visualization/Figure_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualization/Figure_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualization/visual.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training and testing/GRID confusion matrix.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training and testing/RANDOMIZED confusion matrix.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training and testing/basic confusion matrix.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training and testing/cleaned_survey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training and testing/feature importance GRID.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training and testing/feature importance RANDOMIZED.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training and testing/traintest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/AGE ANALYSIS FOR HIGH-STRESS INDIVIDUALS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/CORRELATION HEATMAP.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/Distribution of features by level-Stress Employees.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/EMPLOYMENT TYPE VS STRESS (Tech vs Non-Tech).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/KMeans clustering.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/Point plots of mean feature value per stress level.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/REMOTE WORK IMPACT ON STRESS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/STRESS LEVEL DISTRIBUTION.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/XGB confusion matrix.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/decision tree confusion matrix.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/random forest confusion matrix.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/Figure_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/Figure_2.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocessing/clean_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/clean_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocessing/data/cleaned_survey.csv" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/data/cleaned_survey.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocessing/data_exploration_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/data_exploration_report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/Figure_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/Figure_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/Figure_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/Figure_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/Figure_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/HEALTH DISCLOSURE WILLINGNESS COMPARISON.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/Figure_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/cleaned_survey.csv" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/cleaned_survey.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/visual.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/visual.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +68,7 @@
     &quot;Python.clean_data.executor&quot;: &quot;Run&quot;,
     &quot;Python.data_cleaning.py.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.traintest.executor&quot;: &quot;Run&quot;,
     &quot;Python.visual.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,

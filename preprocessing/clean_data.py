@@ -42,6 +42,24 @@ for col in categorical_cols:
 # 6. Normalize Categorical Text Inputs
 # ------------------
 df['Gender'] = df['Gender'].str.lower().str.strip()
+def encode_gender(g):
+    g = str(g).strip().lower()
+    female_keywords = ['female', 'f', 'woman', 'cis female', 'trans-female']
+    male_keywords = ['male', 'm', 'cis male', 'male-ish', 'mal', 'something kinda male']
+
+    if any(k in g for k in female_keywords):
+        return 'F'
+    elif any(k in g for k in male_keywords):
+        return 'M'
+    else:
+        return 'Other'  # or np.nan
+
+df['Gender_clean'] = df['Gender'].apply(encode_gender)
+
+print(df['Gender_clean'].value_counts())
+# binary encoding gender
+df['Gender_binary'] = df['Gender_clean'].map({'M': 1, 'F': 0})
+print(df['Gender_binary'].value_counts())
 
 # ------------------
 # 7. Binary Encoding for Yes/No Columns
@@ -50,11 +68,13 @@ for col in binary_cols:
     if col in df.columns:
         df[col] = df[col].apply(lambda x: 1 if str(x).lower() == 'yes' else 0)
 
+
 # ------------------
 # 8. Encode Other Categorical Features
 # ------------------
 label_enc_cols = ['work_interfere', 'no_employees', 'remote_work', 'tech_company',
-                  'benefits', 'coworkers', 'supervisor', 'treatment', 'self_employed']
+                  'benefits', 'coworkers', 'supervisor', 'treatment', 'self_employed', 'family_history', 'mental_vs_physical', 'anonymity'
+                  ]
 
 for col in label_enc_cols:
     if col in df.columns:
