@@ -25,7 +25,7 @@ df['stress_level_encoded'] = le.fit_transform(df['stress_level'])  # high/modera
 selected_features = [
     'Age', 'self_employed', 'family_history', 'treatment',
     'remote_work', 'tech_company', 'mental_vs_physical', 'work_interfere',
-    'benefits', 'anonymity', 'no_employees', 'supervisor', 'gad7_score'
+    'benefits', 'anonymity', 'no_employees', 'supervisor'
 ]
 
 X = df[selected_features]
