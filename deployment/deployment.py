@@ -26,7 +26,6 @@ questionnaire_weights = {
     'benefits': 0.1,
     'anonymity': 0.1,
     'no_employees': 0.05,
-    'supervisor': 0.05,
     'Age': 0.05
 }
 
@@ -44,7 +43,6 @@ with st.form("prediction_form"):
     benefits = st.selectbox("Does your employer provide mental health benefits?", ['Yes', 'No'])
     anonymity = st.selectbox("Is your anonymity protected when seeking treatment?", ['Yes', 'No'])
     no_employees = st.selectbox("Company Size", ['1-5', '6-25', '26-100', '100-500', '500-1000', 'More than 1000'])
-    supervisor = st.selectbox("Would you discuss mental health with your supervisor(s)?", ['Yes', 'No'])
     gad7_score = st.slider("GAD-7 Anxiety Score (0–21)", min_value=0, max_value=21, value=10)
     submitted = st.form_submit_button("Predict Stress Level")
 
@@ -70,7 +68,6 @@ if submitted:
         'benefits': 1 if benefits == 'Yes' else 0,
         'anonymity': 1 if anonymity == 'Yes' else 0,
         'no_employees': size_map[no_employees],
-        'supervisor': 1 if supervisor == 'Yes' else 0,
         'gad7_score': gad7_score
     }
 
@@ -93,15 +90,15 @@ if submitted:
             questionnaire_score += val * weight
 
     # Composite Score Calculation
-    gad7_weighted = (gad7_score / 20) * 0.30
-    work_weighted = (work_map[work_interfere] / 4) * 0.40
-    questionnaire_weighted = questionnaire_score * 0.30
+    gad7_weighted = (gad7_score / 20) * 0.35
+    work_weighted = (work_map[work_interfere] / 4) * 0.55
+    questionnaire_weighted = questionnaire_score * 0.10
     total_score = gad7_weighted + work_weighted + questionnaire_weighted
 
     # Determine final stress label
-    if total_score < 0.33:
+    if total_score < 0.30:
         final_label = "low"
-    elif total_score < 0.70:
+    elif total_score < 0.60:
         final_label = "moderate"
     else:
         final_label = "high"
