@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e68e529-6d3c-4201-bf0a-66c070176d13" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployment/cleaned_survey.csv" beforeDir="false" afterPath="$PROJECT_DIR$/deployment/cleaned_survey.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deployment/deployment.py" beforeDir="false" afterPath="$PROJECT_DIR$/deployment/deployment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployment/stress_prediction_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/deployment/stress_prediction_model.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/clean_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/clean_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/data/cleaned_survey.csv" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/data/cleaned_survey.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/data_exploration_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/data_exploration_report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training and testing/cleaned_survey.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training and testing/cleaned_survey.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training and testing/stress_prediction_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/training and testing/stress_prediction_model.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training and testing/traintest.py" beforeDir="false" afterPath="$PROJECT_DIR$/training and testing/traintest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualization/cleaned_survey.csv" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/cleaned_survey.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualization/visual.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/visual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/requirements.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +21,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/deployment" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
