@@ -90,7 +90,7 @@ if submitted:
             questionnaire_score += val * weight
 
     # Composite Score Calculation
-    gad7_weighted = (gad7_score / 20) * 0.35
+    gad7_weighted = (gad7_score / 21) * 0.35
     work_weighted = (work_map[work_interfere] / 4) * 0.55
     questionnaire_weighted = questionnaire_score * 0.10
     total_score = gad7_weighted + work_weighted + questionnaire_weighted
@@ -102,10 +102,36 @@ if submitted:
         final_label = "moderate"
     else:
         final_label = "high"
+    # ---------------------------------------------------------
+    # Monitoring
+    import csv
+    from datetime import datetime
+    import os
 
-    # Display
-    st.subheader("📊 Prediction Result")
-    st.markdown(f"🎯 **Model Prediction:** {pred_label.upper()}")
-    st.markdown(f"🧠 **GAD-7 Score:** {gad7_score}/20")
-    st.markdown(f"🧾 **Questionnaire Score (normalized):** {round(questionnaire_score, 2)}")
-    st.success(f"✅ **Final Combined Stress Level:** {final_label.upper()}")
+    # 1. Define log file path
+    log_file = "monitoring_logs.csv"
+
+    # 2. Prepare row to log
+    log_data = {
+        "timestamp": datetime.now().isoformat(),
+        **input_dict,
+        "predicted_stress_level": final_label
+    }
+
+    # 3. Write log entry
+    file_exists = os.path.isfile(log_file)
+    with open(log_file, mode='a', newline='') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=log_data.keys())
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(log_data)
+
+        # 4. Display prediction and details
+        st.subheader("📊 Prediction Result")
+        st.success(f"✅ **Final Stress Level:** {final_label.upper()}")
+        st.markdown(f"🎯 **Model Prediction:** {pred_label.upper()}")
+        st.markdown(f"🧠 **GAD-7 Score:** {gad7_score}/21")
+        st.markdown(f"🧾 **Questionnaire Score:** {round(questionnaire_score, 2)}")
+
+
+
