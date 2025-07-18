@@ -58,15 +58,15 @@ if submitted:
     # Input features
     input_dict = {
         'Age': age,
-        'self_employed': 1 if self_employed == 'Yes' else 0,
+        'self_employed': 1 if self_employed == 'No' else 0,
         'family_history': 1 if family_history == 'Yes' else 0,
         'treatment': 1 if treatment == 'Yes' else 0,
         'remote_work': 1 if remote_work == 'Yes' else 0,
         'tech_company': 1 if tech_company == 'Yes' else 0,
-        'mental_vs_physical': 1 if mental_vs_physical == 'Yes' else 0,
+        'mental_vs_physical': 1 if mental_vs_physical == 'No' else 0,
         'work_interfere': work_map[work_interfere],
-        'benefits': 1 if benefits == 'Yes' else 0,
-        'anonymity': 1 if anonymity == 'Yes' else 0,
+        'benefits': 1 if benefits == 'No' else 0,
+        'anonymity': 1 if anonymity == 'No' else 0,
         'no_employees': size_map[no_employees],
         'gad7_score': gad7_score
     }
