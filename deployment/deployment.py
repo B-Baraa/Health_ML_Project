@@ -5,10 +5,6 @@ import streamlit as st
 import pandas as pd
 import joblib
 import numpy as np
-
-# Load model and label encoder
-#model = joblib.load("stress_prediction_model.pkl")
-#le = joblib.load("label_encoder.pkl")
 import os
 from pathlib import Path
 
