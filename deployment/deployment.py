@@ -8,15 +8,20 @@ import numpy as np
 from pathlib import Path
 from datetime import datetime
 
-# At the top of deployment.py (after imports)
+# Initialize session state
+if 'monitoring_data' not in st.session_state:
+    st.session_state.monitoring_data = []
+
 MODEL_DIR = Path(__file__).parent
 model_path = MODEL_DIR / "stress_prediction_model.pkl"
 le_path = MODEL_DIR / "label_encoder.pkl"
 # Load model
-model = joblib.load(Path(__file__).parent / "stress_prediction_model.pkl")
-le = joblib.load(Path(__file__).parent / "label_encoder.pkl")
-model = joblib.load(model_path)
-le = joblib.load(le_path)
+try:
+    model = joblib.load('stress_prediction_model.pkl')
+    le = joblib.load('label_encoder.pkl')
+except Exception as e:
+    st.error(f"Failed to load model: {str(e)}")
+    st.stop()
 # Initialize session state for cross-page sharing
 if 'monitoring_data' not in st.session_state:
     st.session_state.monitoring_data = []
@@ -120,15 +125,12 @@ if submitted:
         }
 
         # Append to session state
-        # Safely append to session state
-        if 'monitoring_data' not in st.session_state:
-            st.session_state.monitoring_data = []
-        st.session_state.monitoring_data.append(log_entry)
+        st.session_state.monitoring_data = st.session_state.monitoring_data + [log_entry]
 
-        # Force session state update
-        st.session_state.monitoring_data = st.session_state.monitoring_data
+        # Save to Streamlit's persistent storage
+        st.session_state['monitoring_data'] = st.session_state.monitoring_data
 
-        # Also save to CSV for persistence
+        # Save to CSV for persistence
         log_path = Path(__file__).parent / "monitoring_logs.csv"
         log_entry_df = pd.DataFrame([log_entry])
         log_entry_df.to_csv(log_path, mode='a', header=not log_path.exists(), index=False)

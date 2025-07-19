@@ -42,6 +42,8 @@ try:
     # Convert timestamp
     df['timestamp'] = pd.to_datetime(df['timestamp'])
     df['date'] = df['timestamp'].dt.date
+    # Debug info
+    st.write(f"Loaded {len(df)} records")
 
     # ===== Dashboard Visualizations =====
     # 1. Stress Level Distribution
