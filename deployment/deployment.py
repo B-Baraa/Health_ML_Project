@@ -8,10 +8,10 @@ import numpy as np
 import os
 from pathlib import Path
 
-# Path(__file__) to get the script's directory
+# Correct path for Streamlit Cloud
 MODEL_PATH = Path(__file__).parent / "stress_prediction_model.pkl"
-model = joblib.load("stress_prediction_model.pkl")
-le = joblib.load("label_encoder.pkl")
+model = joblib.load(MODEL_PATH)
+le = joblib.load(Path(__file__).parent / "label_encoder.pkl")
 # Set page
 st.set_page_config(page_title="Workplace Stress Predictor", layout="centered")
 st.title("🤯 Workplace Stress Predictor")
