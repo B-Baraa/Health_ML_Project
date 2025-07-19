@@ -9,7 +9,12 @@ import numpy as np
 # Load model and label encoder
 model = joblib.load("stress_prediction_model.pkl")
 le = joblib.load("label_encoder.pkl")
+import os
+from pathlib import Path
 
+# Path(__file__) to get the script's directory
+MODEL_PATH = Path(__file__).parent / "stress_prediction_model.pkl"
+model = joblib.load(MODEL_PATH)
 # Set page
 st.set_page_config(page_title="Workplace Stress Predictor", layout="centered")
 st.title("🤯 Workplace Stress Predictor")
