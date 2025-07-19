@@ -7,14 +7,15 @@ import joblib
 import numpy as np
 
 # Load model and label encoder
-model = joblib.load("stress_prediction_model.pkl")
-le = joblib.load("label_encoder.pkl")
+#model = joblib.load("stress_prediction_model.pkl")
+#le = joblib.load("label_encoder.pkl")
 import os
 from pathlib import Path
 
 # Path(__file__) to get the script's directory
 MODEL_PATH = Path(__file__).parent / "stress_prediction_model.pkl"
-model = joblib.load(MODEL_PATH)
+model = joblib.load("stress_prediction_model.pkl")
+le = joblib.load("label_encoder.pkl")
 # Set page
 st.set_page_config(page_title="Workplace Stress Predictor", layout="centered")
 st.title("🤯 Workplace Stress Predictor")
@@ -66,7 +67,7 @@ if submitted:
         'self_employed': 1 if self_employed == 'No' else 0,
         'family_history': 1 if family_history == 'Yes' else 0,
         'treatment': 1 if treatment == 'Yes' else 0,
-        'remote_work': 1 if remote_work == 'Yes' else 0,
+        'remote_work': 1 if remote_work == 'No' else 0,
         'tech_company': 1 if tech_company == 'Yes' else 0,
         'mental_vs_physical': 1 if mental_vs_physical == 'No' else 0,
         'work_interfere': work_map[work_interfere],

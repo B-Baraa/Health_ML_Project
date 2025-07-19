@@ -7,6 +7,7 @@
     <list default="true" id="7e68e529-6d3c-4201-bf0a-66c070176d13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deployment/deployment.py" beforeDir="false" afterPath="$PROJECT_DIR$/deployment/deployment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/monitoring_logs.csv" beforeDir="false" afterPath="$PROJECT_DIR$/deployment/monitoring_logs.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,24 +35,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python tests.Doctests in validation.executor": "Run",
-    "Python.clean_data.executor": "Run",
-    "Python.data_cleaning.py.executor": "Run",
-    "Python.deployment.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.monitoring.executor": "Run",
-    "Python.traintest.executor": "Run",
-    "Python.visual.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/asus/PycharmProjects/finalprojectML/preprocessing/clean_data.py",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python tests.Doctests in validation.executor&quot;: &quot;Run&quot;,
+    &quot;Python.clean_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_cleaning.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.monitoring.executor&quot;: &quot;Run&quot;,
+    &quot;Python.traintest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.visual.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/asus/PycharmProjects/finalprojectML/preprocessing/clean_data.py&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="data_cleaning.py" type="PythonConfigurationType" factoryName="Python">
       <module name="finalprojectML" />
@@ -107,16 +108,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/monitoring/monitoring.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
