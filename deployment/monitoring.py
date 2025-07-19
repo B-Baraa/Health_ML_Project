@@ -1,57 +1,75 @@
-# monitoring.py
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import os
+from datetime import datetime
+
+# Initialize session state properly
+if 'monitoring_data' not in st.session_state:
+    st.session_state.monitoring_data = []
 
 st.set_page_config(page_title="Stress Prediction Monitoring", layout="wide")
 st.title("📈 Monitoring Dashboard: Workplace Stress Predictor")
 
-# Load monitoring logs
-LOG_PATH = "monitoring_logs.csv"
+# Try loading from CSV backup if session is empty
+if not st.session_state.monitoring_data:
+    try:
+        csv_path = os.path.join(os.path.dirname(__file__), "monitoring_logs.csv")
+        if os.path.exists(csv_path):
+            df_backup = pd.read_csv(csv_path)
+            if not df_backup.empty:
+                st.session_state.monitoring_data = df_backup.to_dict('records')
+                st.success("Loaded historical data from backup")
+    except Exception as e:
+        st.warning(f"Couldn't load backup data: {str(e)}")
 
-if not os.path.exists(LOG_PATH):
-    st.warning("No monitoring logs found yet. Make some predictions first!")
+# Check if we have data to display
+if not st.session_state.monitoring_data:
+    st.warning("No monitoring data available yet. Please make some predictions first!")
     st.stop()
 
-df = pd.read_csv(LOG_PATH, parse_dates=['timestamp'])
+# Process the data
+try:
+    df = pd.DataFrame(st.session_state.monitoring_data)
 
-# Filters
-with st.sidebar:
-    st.header("📊 Filters")
-    stress_filter = st.multiselect("Select Stress Levels:", options=df["predicted_stress_level"].unique(), default=df["predicted_stress_level"].unique())
-    df_filtered = df[df["predicted_stress_level"].isin(stress_filter)]
+    # Ensure required columns exist
+    required_columns = {'timestamp', 'predicted_stress_level'}
+    if not all(col in df.columns for col in required_columns):
+        missing = required_columns - set(df.columns)
+        st.error(f"Missing required data columns: {', '.join(missing)}")
+        st.stop()
 
-# 1. Count of stress levels
-st.subheader("🧠 Stress Level Distribution")
-st.plotly_chart(
-    px.histogram(df_filtered, x="predicted_stress_level", color="predicted_stress_level", barmode="group")
-)
+    # Convert timestamp
+    df['timestamp'] = pd.to_datetime(df['timestamp'])
+    df['date'] = df['timestamp'].dt.date
 
-# 2. Time trend
-st.subheader("📅 Stress Levels Over Time")
-df_filtered['date'] = df_filtered['timestamp'].dt.date
-trend = df_filtered.groupby(['date', 'predicted_stress_level']).size().reset_index(name='count')
-fig_trend = px.line(trend, x='date', y='count', color='predicted_stress_level', markers=True)
-st.plotly_chart(fig_trend)
+    # ===== Dashboard Visualizations =====
+    # 1. Stress Level Distribution
+    st.subheader("🧠 Stress Level Distribution")
+    fig1 = px.histogram(df, x="predicted_stress_level",
+                        color="predicted_stress_level",
+                        title="Distribution of Stress Levels")
+    st.plotly_chart(fig1)
 
-# 3. Age vs Stress Level
-st.subheader("📊 Age Distribution by Stress Level")
-fig_age = px.box(df_filtered, x="predicted_stress_level", y="Age", color="predicted_stress_level")
-st.plotly_chart(fig_age)
+    # 2. Time Trend Analysis
+    st.subheader("📅 Stress Levels Over Time")
+    trend_df = df.groupby(['date', 'predicted_stress_level']).size().reset_index(name='count')
+    fig2 = px.line(trend_df, x='date', y='count',
+                   color='predicted_stress_level',
+                   title="Stress Trends Over Time")
+    st.plotly_chart(fig2)
 
-# 4. Remote work and work interference impact
-st.subheader("🏠 Remote Work & Work Interference Impact")
-col1, col2 = st.columns(2)
+    # 3. Age Analysis
+    if 'Age' in df.columns:
+        st.subheader("📊 Age Distribution by Stress Level")
+        fig3 = px.box(df, x="predicted_stress_level", y="Age",
+                      title="Age Distribution Across Stress Levels")
+        st.plotly_chart(fig3)
 
-with col1:
-    remote_fig = px.histogram(df_filtered, x="remote_work", color="predicted_stress_level", barmode="group")
-    st.plotly_chart(remote_fig)
+    # 4. Raw Data Explorer
+    with st.expander("🔍 View Raw Data"):
+        st.dataframe(df)
 
-with col2:
-    interfere_fig = px.histogram(df_filtered, x="work_interfere", color="predicted_stress_level", barmode="group")
-    st.plotly_chart(interfere_fig)
-
-# Optional: Display raw log data
-with st.expander("📄 View Raw Log Data"):
-    st.dataframe(df_filtered)
+except Exception as e:
+    st.error(f"Error processing data: {str(e)}")
+    st.stop()
