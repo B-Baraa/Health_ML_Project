@@ -17,10 +17,10 @@ model_path = MODEL_DIR / "stress_prediction_model.pkl"
 le_path = MODEL_DIR / "label_encoder.pkl"
 # Load model
 try:
-    model = joblib.load('stress_prediction_model.pkl')
-    le = joblib.load('label_encoder.pkl')
-except Exception as e:
-    st.error(f"Failed to load model: {str(e)}")
+    model = joblib.load(model_path)
+    le = joblib.load(le_path)
+except FileNotFoundError as e:
+    st.error(f"Model files not found: {e}")
     st.stop()
 # Initialize session state for cross-page sharing
 if 'monitoring_data' not in st.session_state:
