@@ -8,6 +8,32 @@ import numpy as np
 from pathlib import Path
 from datetime import datetime
 
+# --- Initialize session state keys safely ---
+if "user_logged_in" not in st.session_state:
+    st.session_state["user_logged_in"] = False
+if "username" not in st.session_state:
+    st.session_state["username"] = ""
+# --- Simple Sidebar Login ---
+st.sidebar.title("🔐 Employee Login")
+username_input = st.sidebar.text_input("Enter your employee ID / name")
+login_button = st.sidebar.button("Login")
+
+if login_button:
+    if username_input:
+        st.session_state["user_logged_in"] = True
+        st.session_state["username"] = username_input
+        st.sidebar.success(f"Welcome, {username_input}!")
+    else:
+        st.sidebar.warning("Please enter a valid username.")
+
+if not st.session_state["user_logged_in"]:
+    st.warning("🔐 Please log in to continue.")
+    st.stop()
+
+# Show current user after login
+st.sidebar.markdown(f"**Logged in as:** {st.session_state['username']}")
+
+
 # Initialize session state
 if 'monitoring_data' not in st.session_state:
     st.session_state.monitoring_data = []
@@ -39,7 +65,7 @@ questionnaire_weights = {
     'self_employed': 0.05,
     'family_history': 0.1,
     'treatment': 0.1,
-    'remote_work': 0.5,
+    'remote_work': 0.0,
     'tech_company': 0.05,
     'mental_vs_physical': 0.1,
     'benefits': 0.1,

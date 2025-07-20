@@ -27,7 +27,6 @@ if not st.session_state.monitoring_data:
 if not st.session_state.monitoring_data:
     st.warning("No monitoring data available yet. Please make some predictions first!")
     st.stop()
-
 # Process the data
 try:
     df = pd.DataFrame(st.session_state.monitoring_data)
