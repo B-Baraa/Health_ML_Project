@@ -5,27 +5,67 @@ import streamlit as st
 import pandas as pd
 import joblib
 import numpy as np
-
-# Load model and label encoder
-model = joblib.load("stress_prediction_model.pkl")
-le = joblib.load("label_encoder.pkl")
-import os
 from pathlib import Path
+from datetime import datetime
 
-# Path(__file__) to get the script's directory
-MODEL_PATH = Path(__file__).parent / "stress_prediction_model.pkl"
-model = joblib.load(MODEL_PATH)
-# Set page
+# --- Initialize session state keys safely ---
+if "user_logged_in" not in st.session_state:
+    st.session_state["user_logged_in"] = False
+if "username" not in st.session_state:
+    st.session_state["username"] = ""
+# --- Simple Sidebar Login ---
+st.sidebar.title("🔐 Employee Login")
+username_input = st.sidebar.text_input("Enter your employee ID / name")
+login_button = st.sidebar.button("Login")
+
+if login_button:
+    if username_input:
+        st.session_state["user_logged_in"] = True
+        st.session_state["username"] = username_input
+        st.sidebar.success(f"Welcome, {username_input}!")
+    else:
+        st.sidebar.warning("Please enter a valid username.")
+
+if not st.session_state["user_logged_in"]:
+    st.warning("🔐 Please log in to continue.")
+    st.stop()
+
+# Show current user after login
+st.sidebar.markdown(f"**Logged in as:** {st.session_state['username']}")
+
+
+# Initialize session state
+if 'monitoring_data' not in st.session_state:
+    st.session_state.monitoring_data = []
+
+MODEL_DIR = Path(__file__).parent
+model_path = MODEL_DIR / "stress_prediction_model.pkl"
+le_path = MODEL_DIR / "label_encoder.pkl"
+# Load model
+try:
+    model = joblib.load(model_path)
+    le = joblib.load(le_path)
+except FileNotFoundError as e:
+    st.error(f"Model files not found: {e}")
+    st.stop()
+# Initialize session state for cross-page sharing
+if 'monitoring_data' not in st.session_state:
+    st.session_state.monitoring_data = []
+
+# Initialize session state for logs if it doesn't exist
+if 'monitoring_logs' not in st.session_state:
+    st.session_state.monitoring_logs = []
+# Page setup
 st.set_page_config(page_title="Workplace Stress Predictor", layout="centered")
 st.title("🤯 Workplace Stress Predictor")
 st.markdown("Enter employee data to predict **stress risk** in the workplace.")
 
-# Questionnaire Scoring Weights based on feature importance)
+# Questionnaire weights
 questionnaire_weights = {
     'self_employed': 0.05,
     'family_history': 0.1,
     'treatment': 0.1,
-    'remote_work': 0.5,
+    'remote_work': 0.0,
     'tech_company': 0.05,
     'mental_vs_physical': 0.1,
     'benefits': 0.1,
@@ -33,7 +73,6 @@ questionnaire_weights = {
     'no_employees': 0.05,
     'Age': 0.05
 }
-
 
 # Input form
 with st.form("prediction_form"):
@@ -44,31 +83,28 @@ with st.form("prediction_form"):
     remote_work = st.selectbox("Do you work remotely (outside of an office) at least 50% of the time?", ['Yes', 'No'])
     tech_company = st.selectbox("Is your employer primarily a tech company/organization?", ['Yes', 'No'])
     mental_vs_physical = st.selectbox("Does your employer take mental health as seriously as physical health?", ['Do not know', 'No', 'Yes'])
-    work_interfere = st.selectbox("If you have a mental health condition, do you feel it interferes with your work?", ['Never', 'Rarely', 'Sometimes', 'Often', 'Very often'])
+    work_interfere = st.selectbox("If you have a mental health condition, do you feel it interferes with your worK?", ['Never', 'Rarely', 'Sometimes', 'Often', 'Very often'])
     benefits = st.selectbox("Does your employer provide mental health benefits?", ['Yes', 'No'])
     anonymity = st.selectbox("Is your anonymity protected when seeking treatment?", ['Yes', 'No'])
     no_employees = st.selectbox("Company Size", ['1-5', '6-25', '26-100', '100-500', '500-1000', 'More than 1000'])
     gad7_score = st.slider("GAD-7 Anxiety Score (0–21)", min_value=0, max_value=21, value=10)
     submitted = st.form_submit_button("Predict Stress Level")
 
-
 if submitted:
-    # Mappings
+    # Feature mappings
     work_map = {'Never': 0, 'Rarely': 1, 'Sometimes': 2, 'Often': 3, 'Very often': 4}
-    size_map = {
-        '1-5': 0, '6-25': 1, '26-100': 2, '100-500': 3, '500-1000': 4, 'More than 1000': 5
-    }
+    size_map = {'1-5': 0, '6-25': 1, '26-100': 2, '100-500': 3, '500-1000': 4, 'More than 1000': 5}
     mvp_map = {'Yes': 1, 'No': 0, 'Do not know': 0}
 
-    # Input features
+    # Prepare input
     input_dict = {
         'Age': age,
         'self_employed': 1 if self_employed == 'No' else 0,
         'family_history': 1 if family_history == 'Yes' else 0,
         'treatment': 1 if treatment == 'Yes' else 0,
-        'remote_work': 1 if remote_work == 'Yes' else 0,
+        'remote_work': 1 if remote_work == 'No' else 0,
         'tech_company': 1 if tech_company == 'Yes' else 0,
-        'mental_vs_physical': 1 if mental_vs_physical == 'No' else 0,
+        'mental_vs_physical': mvp_map[mental_vs_physical],
         'work_interfere': work_map[work_interfere],
         'benefits': 1 if benefits == 'No' else 0,
         'anonymity': 1 if anonymity == 'No' else 0,
@@ -76,16 +112,13 @@ if submitted:
         'gad7_score': gad7_score
     }
 
-    # Model input (exclude gad7_score and remote_work if not used in training)
+    # Model prediction
     model_input = input_dict.copy()
     model_input.pop('gad7_score')
-    input_df = pd.DataFrame([model_input])
-
-    # Prediction
-    pred_encoded = model.predict(input_df)[0]
+    pred_encoded = model.predict(pd.DataFrame([model_input]))[0]
     pred_label = le.inverse_transform([pred_encoded])[0]
 
-    # Questionnaire Score (20%)
+    # Questionnaire Score (10%)
     questionnaire_score = 0
     for feature, weight in questionnaire_weights.items():
         val = input_dict[feature]
@@ -107,36 +140,32 @@ if submitted:
         final_label = "moderate"
     else:
         final_label = "high"
-    # ---------------------------------------------------------
-    # Monitoring
-    import csv
-    from datetime import datetime
-    import os
 
-    # 1. Define log file path
-    log_file = "monitoring_logs.csv"
+    # ===== Session State Logging =====
+    # Append to monitoring logs
+        # Create log entry
+        log_entry = {
+            "timestamp": datetime.now().isoformat(),
+            **input_dict,
+            "predicted_stress_level": final_label
+        }
 
-    # 2. Prepare row to log
-    log_data = {
-        "timestamp": datetime.now().isoformat(),
-        **input_dict,
-        "predicted_stress_level": final_label
-    }
+        # Append to session state
+        st.session_state.monitoring_data = st.session_state.monitoring_data + [log_entry]
 
-    # 3. Write log entry
-    file_exists = os.path.isfile(log_file)
-    with open(log_file, mode='a', newline='') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=log_data.keys())
-        if not file_exists:
-            writer.writeheader()
-        writer.writerow(log_data)
+        # Save to Streamlit's persistent storage
+        st.session_state['monitoring_data'] = st.session_state.monitoring_data
 
-        # 4. Display prediction and details
-        st.subheader("📊 Prediction Result")
-        st.success(f"✅ **Final Stress Level:** {final_label.upper()}")
-        st.markdown(f"🎯 **Model Prediction:** {pred_label.upper()}")
-        st.markdown(f"🧠 **GAD-7 Score:** {gad7_score}/21")
-        st.markdown(f"🧾 **Questionnaire Score:** {round(questionnaire_score, 2)}")
+        # Save to CSV for persistence
+        log_path = Path(__file__).parent / "monitoring_logs.csv"
+        log_entry_df = pd.DataFrame([log_entry])
+        log_entry_df.to_csv(log_path, mode='a', header=not log_path.exists(), index=False)
 
+        st.success("Prediction saved successfully!")
 
-
+    # Display results
+    st.subheader("📊 Prediction Result")
+    st.success(f"✅ **Final Stress Level:** {final_label.upper()}")
+    st.markdown(f"🎯 **Model Prediction:** {pred_label.upper()}")
+    st.markdown(f"🧠 **GAD-7 Score:** {gad7_score}/21")
+    st.markdown(f"🧾 **Questionnaire Score:** {round(questionnaire_score, 2)}")
