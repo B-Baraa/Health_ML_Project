@@ -5,9 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e68e529-6d3c-4201-bf0a-66c070176d13" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cleaned_survey.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/.devcontainer/devcontainer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/.idea/finalprojectML.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/data/survey.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/deployment/deployment.py" beforeDir="false" afterPath="$PROJECT_DIR$/deployment/deployment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/deployment/cleaned_survey.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/deployment/deployment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/deployment/label_encoder.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/deployment/monitoring.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/deployment/monitoring_logs.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/deployment/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/deployment/stress_prediction_model.pkl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/deployment/monitoring.py" beforeDir="false" afterPath="$PROJECT_DIR$/deployment/monitoring.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/preprocessing/clean_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/preprocessing/data/cleaned_survey.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/preprocessing/data_exploration_report.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/preprocessing/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/preprocessing/survey.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/training and testing/GRID confusion matrix.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/training and testing/RANDOMIZED confusion matrix.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/training and testing/basic confusion matrix.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/training and testing/cleaned_survey.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/training and testing/feature importance GRID.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/training and testing/feature importance RANDOMIZED.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/training and testing/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/training and testing/traintest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/AGE ANALYSIS FOR HIGH-STRESS INDIVIDUALS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/CORRELATION HEATMAP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/Distribution of features by level-Stress Employees.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/EMPLOYMENT TYPE VS STRESS (Tech vs Non-Tech).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/HEALTH DISCLOSURE WILLINGNESS COMPARISON.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/KMeans clustering.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/Point plots of mean feature value per stress level.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/REMOTE WORK IMPACT ON STRESS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/STRESS LEVEL DISTRIBUTION.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/XGB confusion matrix.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/cleaned_survey.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/decision tree confusion matrix.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/random forest confusion matrix.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/visualization/visual.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/label_encoder.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring_logs.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stress_prediction_model.pkl" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
