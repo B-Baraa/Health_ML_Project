@@ -25,13 +25,18 @@ if not st.session_state["user_logged_in"]:
             st.session_state["user_logged_in"] = True
             st.session_state["username"] = username_input.strip()
             st.success(f"Welcome, {username_input} 👋")
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.warning("Please enter a valid name to continue.")
     st.stop()
-
-# ✅ Display after login
+# ✅ After login
 st.sidebar.success(f"✅ Logged in as: {st.session_state['username']}")
+
+# 🔓 Logout Button
+if st.sidebar.button("🚪 Logout"):
+    st.session_state["user_logged_in"] = False
+    st.session_state["username"] = ""
+    st.rerun()
 
 
 # Initialize session state
