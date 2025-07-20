@@ -1,6 +1,6 @@
 # ✅ Phase 4:Streamlit App with GAD-7 Integration
 #-----------------------------------------------------
-# ===== deployment.py =====
+# deployment.py
 import streamlit as st
 import pandas as pd
 import joblib
@@ -140,8 +140,8 @@ if submitted:
         final_label = "moderate"
     else:
         final_label = "high"
-# -----------------------------------------------------
-# ===== monitoring session state logging =====
+
+    # ===== Session State Logging =====
     # Append to monitoring logs
         # Create log entry
         log_entry = {
