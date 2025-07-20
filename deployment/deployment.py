@@ -8,30 +8,30 @@ import numpy as np
 from pathlib import Path
 from datetime import datetime
 
-# --- Initialize session state keys safely ---
+# --- Simple Login ---
+st.set_page_config(page_title="Workplace Stress Predictor", layout="centered")
+
 if "user_logged_in" not in st.session_state:
     st.session_state["user_logged_in"] = False
 if "username" not in st.session_state:
     st.session_state["username"] = ""
-# --- Simple Sidebar Login ---
-st.sidebar.title("🔐 Employee Login")
-username_input = st.sidebar.text_input("Enter your employee ID / name")
-login_button = st.sidebar.button("Login")
-
-if login_button:
-    if username_input:
-        st.session_state["user_logged_in"] = True
-        st.session_state["username"] = username_input
-        st.sidebar.success(f"Welcome, {username_input}!")
-    else:
-        st.sidebar.warning("Please enter a valid username.")
 
 if not st.session_state["user_logged_in"]:
-    st.warning("🔐 Please log in to continue.")
+    st.title("🔐 Login to Access Stress Predictor")
+    username_input = st.text_input("Enter your name to continue:")
+
+    if st.button("Login"):
+        if username_input.strip():  # Check it's not empty
+            st.session_state["user_logged_in"] = True
+            st.session_state["username"] = username_input.strip()
+            st.success(f"Welcome, {username_input} 👋")
+            st.experimental_rerun()
+        else:
+            st.warning("Please enter a valid name to continue.")
     st.stop()
 
-# Show current user after login
-st.sidebar.markdown(f"**Logged in as:** {st.session_state['username']}")
+# ✅ Display after login
+st.sidebar.success(f"✅ Logged in as: {st.session_state['username']}")
 
 
 # Initialize session state
