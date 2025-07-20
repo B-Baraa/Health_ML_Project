@@ -53,8 +53,8 @@ All predictions are logged for transparency and future optimization.
 | Pandas         | Data manipulation                |
 | Joblib         | Model persistence                |
 | CSV Logging    | Lightweight monitoring           |
-| numpy          | Machine learning training        |
-| seaborn        | Data manipulation                |
+| numpy          | Numerical computing&data handling|
+| seaborn        | Statistical data visualization	
 ---
 
 ## 📁 Project Structure
