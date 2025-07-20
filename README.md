@@ -1,7 +1,7 @@
 # 🤯 Workplace Stress Predictor
 
 **Workplace Stress Predictor** is an intelligent web app designed to estimate employee stress levels using a combination of mental health self-assessments and workplace factors.
-It leverages machine learning and a customized scoring system to provide accurate, actionable insights.
+It leverages machine learning and a customized scoring system to provide accurate, authenticated and actionable insights.
 
 ---
 
@@ -15,6 +15,8 @@ It leverages machine learning and a customized scoring system to provide accurat
 ## 🧠 How It Works
 
 The app uses:
+- The user enters its username
+- Fill out the form and Submit the answers
 - **GAD-7 anxiety score** (self-reported)
 - **Machine learning-based stress prediction** ratings
 - **Workplace conditions questionnaire**
