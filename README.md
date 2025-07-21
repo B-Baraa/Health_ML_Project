@@ -23,8 +23,8 @@ The app uses:
 
 Each factor is weighted:
 - 🧠 GAD-7 → 35%
-- 🏢 Stress Prediction → 45%
-- 📋 Questionnaire → 20%
+- 🏢 Stress Prediction → 55%
+- 📋 Questionnaire → 10%
 
 Final stress levels are:
 - **Low**
@@ -85,7 +85,7 @@ health_ml_project/
 └── README.md
 
 🔍 Monitoring Strategy
--All form submissions are stored in monitoring_logs.csv for local use and in st.session_state.monitoring_logs for streamlit cloud.
+-All form submissions are stored in monitoring_logs.csv for local use then st.session_state.monitoring_logs for streamlit cloud.
 -The dashboard displays log trends and frequencies.
 -Useful for tracking model use and detecting anomalies.
 
