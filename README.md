@@ -85,7 +85,8 @@ health_ml_project/
 └── README.md
 
 🔍 Monitoring Strategy
--All form submissions are stored in monitoring_logs.csv for local use then st.session_state.monitoring_logs for streamlit cloud.
+-All form submissions are stored in monitoring_logs.csv for local use
+then st.session_state.monitoring_logs for streamlit cloud.
 -The dashboard displays log trends and frequencies.
 -Useful for tracking model use and detecting anomalies.
 
